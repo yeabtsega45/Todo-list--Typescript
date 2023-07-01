@@ -8,8 +8,8 @@
     * {
         @apply m-0 p-0 box-border bg-slate-300;
     }
-    @font-face {
+    /* @font-face {
         font-family: "Roboto";
         src: url("../public/fonts/Roboto.otf");
-    }
+    } */
 }

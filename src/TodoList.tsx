@@ -7,10 +7,7 @@ interface item {
 }
 
 const TodoList: React.FC = () => {
-  const [todos, setTodos] = useState<item[]>([
-    { id: 1, text: "sample todo", completed: false },
-    { id: 2, text: "sample todo 2", completed: false },
-  ]);
+  const [todos, setTodos] = useState<item[]>([]);
   const handleToggle = (id: number) => {
     setTodos(
       todos.map((todo) => {
