@@ -3,7 +3,7 @@ import React, { useState } from "react";
 interface item {
   id: number;
   text: string;
-  completed: false;
+  completed: boolean;
 }
 
 const TodoList: React.FC = () => {
@@ -20,6 +20,11 @@ const TodoList: React.FC = () => {
         return todo;
       })
     );
+  };
+  const [input, setInput] = useState<string>("");
+  const handleClick = () => {
+    const newTodo: item = { id: Date.now(), text: input, completed: false };
+    setTodos([...todos, newTodo]);
   };
 
   return (
@@ -40,9 +45,13 @@ const TodoList: React.FC = () => {
       <input
         type="text"
         placeholder="Add todo item"
+        onChange={(e) => setInput(e.currentTarget.value)}
         className="h-9 w-[165px] bg-white rounded-md p-3 border-[1px] border-solid border-white ml-3 mt-10"
       />
-      <button className="h-8 w-[60px] bg-blue-800 text-white text-base mt-3 cursor-pointer">
+      <button
+        onClick={handleClick}
+        className="h-8 w-[60px] bg-blue-800 text-white text-base mt-3 cursor-pointer"
+      >
         Add
       </button>
     </div>
