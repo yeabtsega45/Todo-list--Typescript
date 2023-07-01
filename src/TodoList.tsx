@@ -7,13 +7,32 @@ interface item {
 }
 
 const TodoList: React.FC = () => {
-  const [todos, setTodos] = useState<item[]>([]);
+  const [todos, setTodos] = useState<item[]>([
+    { id: 1, text: "sample todo", completed: false },
+    { id: 2, text: "sample todo 2", completed: false },
+  ]);
+  const handleToggle = (id: number) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, completed: !todo.completed };
+        }
+        return todo;
+      })
+    );
+  };
+
   return (
     <div className="h-screen flex flex-col justify-center items-center">
       <h1>Todo List</h1>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id} className="mt-4">
+          <li
+            key={todo.id}
+            onClick={() => handleToggle(todo.id)}
+            style={{ textDecoration: todo.completed ? "line-through" : "none" }}
+            className="mt-4"
+          >
             {todo.text}
           </li>
         ))}
