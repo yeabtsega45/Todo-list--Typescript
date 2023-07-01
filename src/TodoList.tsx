@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
-function TodoList() {
+interface item {
+  id: number;
+  text: string;
+  completed: false;
+}
+
+const TodoList: React.FC = () => {
+  const [todos, setTodos] = useState<item[]>([]);
   return (
     <div className="h-screen flex flex-col justify-center items-center">
       <h1>Todo List</h1>
       <ul>
-        <li className="mt-4"></li>
-        <li className="mt-4"></li>
+        {todos.map((todo) => (
+          <li key={todo.id} className="mt-4">
+            {todo.text}
+          </li>
+        ))}
       </ul>
       <input
         type="text"
@@ -18,6 +28,6 @@ function TodoList() {
       </button>
     </div>
   );
-}
+};
 
 export default TodoList;
